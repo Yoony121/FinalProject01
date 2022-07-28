@@ -6,7 +6,8 @@ const Terms = () => {
             <main>
                 <div className="terms">
                     <h2 className="heading">Terms and Conditions</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates aperiam inventore illo unde non, fugit, a ipsum, voluptas nostrum eum beatae quis soluta natus saepe consequuntur quos magnam animi?</p>
+                    <p>Users can get a no-questions-asked refund within 1 week of receiving the item.
+If there is a problem, please contact the seller within 14 days. If the seller is unable to resolve the problem, please contact our Customer Service Centre.</p>
                 </div>
             </main>
         </div>
