@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "163db289-e5cc-40f7-a553-03c5b167ecdc",
+		"name": "CustomerRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17379605"
+	},
+	"item": [
+		{
+			"name": "TestGetCustomers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestCreateCustomer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Leonardo\",\r\n    \"lastName\": \"DiCaprio\",\r\n    \"street\": \"981 Main Rd\",\r\n    \"city\": \"Chicago\",\r\n    \"state\": \"IL\",\r\n    \"country\": \"United States\",\r\n    \"zipCode\": \"60007\",\r\n    \"emailAddress\": \"leonardo.dicaprio@gmail.com\",\r\n    \"phoneNumber\": \"678-901-2345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customer/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestGetCustomerById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0Q3VzdG9tZXIwMSIsImlhdCI6MTY1ODYzODY3NSwiZXhwIjoxNjU4NjM5Mjc1fQ.3DF8-siPbWKXsgV6nSsXXVmEtpf8z-aP0Qx-uTd2tTgJnUJA48uyzQ_sWwAiBVyDXM1rKx2BWBhR4qo7rvtVtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/customer/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestUpdateCustomer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Q3VzdG9tZXIwMSIsImlhdCI6MTY1ODY0Njc1NCwiZXhwIjoxNjU4NjQ3MzU0fQ.LfFLQxFOTBw2Cewbf9QOTDyKJ7Blz6F9jf-ZNJI5ud8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Tim\",\r\n    \"lastName\": \"Jinkins\",\r\n    \"street\": \"981 Ham St\",\r\n    \"city\": \"New York\",\r\n    \"state\": \"NY\",\r\n    \"country\": \"United States\",\r\n    \"zipCode\": \"10002\",\r\n    \"phoneNumber\": \"908-201-8931\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customer/update/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						"update",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

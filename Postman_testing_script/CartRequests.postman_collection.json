@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "921d7445-8621-4a1c-b85e-69f3f1c824e4",
+		"name": "CartRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17379605"
+	},
+	"item": [
+		{
+			"name": "TestGetCarts",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/seller",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"seller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestAddProductToCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Leonardo\",\r\n    \"lastName\": \"DiCaprio\",\r\n    \"street\": \"981 Main Rd\",\r\n    \"city\": \"Chicago\",\r\n    \"state\": \"IL\",\r\n    \"country\": \"United States\",\r\n    \"zipCode\": \"60007\",\r\n    \"emailAddress\": \"leonardo.dicaprio@gmail.com\",\r\n    \"phoneNumber\": \"678-901-2345\",\r\n    \"bankName\": \"Wells Fargo\",\r\n    \"accountNumber\": \"102938103123\",\r\n    \"routingNumber\": \"2390220\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/seller/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"seller",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestRemoveProductFromCart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Q3VzdG9tZXIwMSIsImlhdCI6MTY1ODk0ODQyMywiZXhwIjoxNjU4OTQ5MDIzfQ.KOZrblktXc-9MQ6hCbD8kd0ubJBBHh5-4bJb1em3yq4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/cart/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
