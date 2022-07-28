@@ -6,7 +6,7 @@ const About = () => {
             <main>
                 <div className="about">
                     <h2 className="heading">About Us</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates aperiam inventore illo unde non, fugit, a ipsum, voluptas nostrum eum beatae quis soluta natus saepe consequuntur quos magnam animi?</p>
+                    <p>This is a website created to facilitate the trade of unwanted goods for the attached second-hand goods, in order to reduce the environmental pollution caused by fast fashion.</p>
                 </div>
             </main>
         </div>
