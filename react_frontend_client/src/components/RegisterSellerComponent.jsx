@@ -50,6 +50,7 @@ class RegisterSellerComponent extends Component {
         try {
             let user = await SellerService.registerSeller(seller);
             this.setState({ user });
+            this.props.updateLogin();
         } catch (error) {
             this.setState({ error });
         }

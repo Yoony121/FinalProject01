@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import authHeader from '../services/AuthHeader';
 import Search from '../services/Search';
 import WishListService from '../services/WishListService';
 import CartService from '../services/CartService';
+import AuthService from '../services/AuthService';
 
 class HeaderComponent extends Component {
     constructor(props) {
@@ -14,7 +15,9 @@ class HeaderComponent extends Component {
             distance: 5,
             keywords: "",
             wishListProducts: [],
-            cartProducts: []
+            cartProducts: [],
+            loginUpdate: 0,
+            searchResult: []
         }
 
         this.selectDistance = this.selectDistance.bind(this);
@@ -34,6 +37,15 @@ class HeaderComponent extends Component {
         this.forceUpdate();
     }
 
+    handleLogout = async () => {
+        await AuthService.logout();
+        this.props.updateLogin();
+    }
+
+    handleSearch = async () => {
+        await Search.search(this.state.keywords, this.state.distance).then(res => this.setState({searchResult: res.data}));
+        await this.props.updateSearchResult(this.state.searchResult);
+    }
 
     componentWillMount() {
         this.setState({hasLogIn: Object.keys(authHeader()).length !== 0});
@@ -50,12 +62,14 @@ class HeaderComponent extends Component {
     }
 
     render() {
-        const isLoggedIn = Object.keys(authHeader()).length !== 0;
+        console.log("Render got triggered");
+        const isLoggedIn = this.props.isLoggedIn;
         let dropdown;
         if (isLoggedIn) {
             dropdown =  <ul>
                             <li><Link to="/account">My Account</Link></li>
                             <li><Link to="/orders">My Orders</Link></li>
+                            <li><Link to="/"  onClick={this.handleLogout}>Logout</Link></li>
                         </ul>;
         } else {
             dropdown =  <ul>
@@ -86,18 +100,16 @@ class HeaderComponent extends Component {
                                     <option value="10">10 km</option>
                                     <option value="20">20 km</option>
                                 </select>
-                                <input type="search" className="form-control rounded" maxLength="2" placeholder="Search" aria-label="Search" aria-describedby="search-addon" 
+                                <input type="search" className="form-control rounded" maxLength="100" placeholder="Search" aria-label="Search" aria-describedby="search-addon" 
                                         value={this.state.keywords} onChange={this.changeKeywordsHandler}/>
-                                <button type="button" className="btn btn-outline-primary" onClick={Search.search(this.state.keywords, this.state.distance)}>search</button>
+                                <Link to="/search-result">
+                                    <button type="button" className="btn btn-outline-primary" onClick={this.handleSearch}>search</button>
+                                </Link>
                             </div>
                             <div className="shop-icon">
                                 <div className="dropdown">
                                     <img src="/img/icons/account.png"/>
                                     <div className="dropdown-menu">
-                                        {/* <ul>
-                                            <li><Link to="/account">My Account</Link></li>
-                                            <li><Link to="/orders">My Orders</Link></li>
-                                        </ul>*/}
                                         {dropdown}
                                     </div>
                                 </div>

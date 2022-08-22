@@ -15,6 +15,7 @@ class AuthService {
     }
 
     logout() {
+        console.log("Logout triggered");
         localStorage.removeItem("user");
     }
 

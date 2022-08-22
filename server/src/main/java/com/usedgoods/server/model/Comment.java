@@ -20,8 +20,12 @@ public class Comment {
     private Long productId;
     @Column(name = "customer_id")
     private Long customerId;
+    @Column(name = "customer_name")
+    private String customerName;
     @Column(name = "content")
     private String content;
     @Column(name = "time")
     private Date time;
+    @Column(name = "rating")
+    private int rating;
 }

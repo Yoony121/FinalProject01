@@ -9,4 +9,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findTop8ByOrderByCommentsCountDesc();
     List<Product> findTop4ByOrderByCommentsCountDesc();
     List<Product> findTop3ByOrderByCommentsCountDesc();
+
+    List<Product> findProductsByProductNameContaining(String keyword);
+
+    List<Product> findProductsByShortDescriptionContaining(String keyword);
+
+    List<Product> findProductsByFullDescriptionContaining(String keyword);
 }

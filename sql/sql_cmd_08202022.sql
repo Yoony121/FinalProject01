@@ -92,8 +92,10 @@ CREATE TABLE comments (
  id INT AUTO_INCREMENT PRIMARY KEY,
  product_id INT NOT NULL,
  customer_id INT NOT NULL,
+ customer_name VARCHAR(50) NOT NULL,
  content VARCHAR(50) NOT NULL,
- time DATETIME NOT NULL
+ time DATETIME NOT NULL,
+ rating INT NOT NULL
 );
 
 DROP TABLE IF EXISTS carts;
@@ -113,6 +115,15 @@ CREATE TABLE wishlists (
  product_id INT NOT NULL,
  customer_id INT NOT NULL,
  removed INT NOT NULL
+);
+
+DROP TABLE IF EXISTS geo_locations;
+
+CREATE TABLE geo_locations (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ seller_id INT NOT NULL,
+ latitude FLOAT NOT NULL,
+ longitude FLOAT NOT NULL
 );
 
 
@@ -135,10 +146,10 @@ INSERT INTO usedgoods.sellers (user_name, password, first_name, last_name, stree
 VALUES ('jdavidson', 'jdavidson', 'Jack', 'Davidson', '905 Main St.', 'Seattle', 'WA', 'United States', '98101', 'jack.davidson@gmail.com', '456-789-0123');
 
 INSERT INTO usedgoods.sellers (user_name, password, first_name, last_name, street, city, state, country, zip_code, email_address, phone_number)
-VALUES ('tdunkon', 'tdunkon', 'Tim', 'Dunkon', '254 Main St.', 'Los Angeles', 'CA', 'United States', '90001', 'tim.dunkon@gmail.com', '456-789-0987');
+VALUES ('tdunkon', 'tdunkon', 'Tim', 'Dunkon', '254 Main St.', 'San Francisco', 'CA', 'United States', '94016', 'tim.dunkon@gmail.com', '456-789-0987');
 
 INSERT INTO usedgoods.sellers (user_name, password, first_name, last_name, street, city, state, country, zip_code, email_address, phone_number)
-VALUES ('bhardson', 'bhardson', 'Benny', 'Hardson', '905 Second St.', 'Seattle', 'WA', 'United States', '98101', 'benny.hardson@gmail.com', '456-709-0145');
+VALUES ('bhardson', 'bhardson', 'Benny', 'Hardson', '905 Second St.', 'New York', 'NY', 'United States', '10001', 'benny.hardson@gmail.com', '456-709-0145');
 
 INSERT INTO usedgoods.bank_accounts (bank_name, account_number, routing_number, seller_id, default_account)
 VALUES ('Bank of America', '902830928', '230492304', '1', '1');
@@ -151,6 +162,18 @@ VALUES ('Wells Fargo', '902830987', '230492305', '3', '1');
 
 INSERT INTO usedgoods.bank_accounts (bank_name, account_number, routing_number, seller_id, default_account)
 VALUES ('Chase', '902830091', '230492306', '4', '1');
+
+INSERT INTO usedgoods.geo_locations (seller_id, latitude, longitude) 
+VALUES ('1', 34.052235, -118.243683);
+
+INSERT INTO usedgoods.geo_locations (seller_id, latitude, longitude) 
+VALUES ('2', 47.608013, -122.335167);
+
+INSERT INTO usedgoods.geo_locations (seller_id, latitude, longitude) 
+VALUES ('3', 37.773972, -122.431297);
+
+INSERT INTO usedgoods.geo_locations (seller_id, latitude, longitude) 
+VALUES ('4', 40.730610, -73.935242);
 
 
 INSERT INTO usedgoods.products (product_name, price, quantity, category, image, short_description, full_description, seller_id, comments_count)

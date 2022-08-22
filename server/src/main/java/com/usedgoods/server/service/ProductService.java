@@ -15,4 +15,6 @@ public interface ProductService {
     List<Product> getMainPageProducts();
 
     List<Product> getTrendingProducts();
+
+    List<Product> searchProductsByKeyword(String keyword);
 }

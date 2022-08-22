@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,5 +50,16 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> getTrendingProducts() {
         return productRepository.findTop8ByOrderByCommentsCountDesc();
+    }
+
+    @Override
+    public List<Product> searchProductsByKeyword(String keyword) {
+        List<Product> searchInProductName = productRepository.findProductsByProductNameContaining(keyword);
+        List<Product> searchInShortDesc = productRepository.findProductsByShortDescriptionContaining(keyword);
+        List<Product> searchInFullDesc = productRepository.findProductsByFullDescriptionContaining(keyword);
+        List<Product> searchResult = new ArrayList<>(searchInProductName);
+        searchInShortDesc.stream().filter(product -> !searchResult.contains(product)).forEach(product -> searchResult.add(product));
+        searchInFullDesc.stream().filter(product -> !searchResult.contains(product)).forEach(product -> searchResult.add(product));
+        return searchResult;
     }
 }

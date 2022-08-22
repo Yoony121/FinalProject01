@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Navigate } from "react-router-dom";
 import AuthService from '../services/AuthService';
+import HeaderComponent from './HeaderComponent';
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class LoginComponent extends Component {
         try {
             let user = await AuthService.login(userName, password);
             this.setState({ user });
+            this.props.updateLogin();
         } catch (error) {
             this.setState({ error });
         }

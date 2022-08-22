@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Navigate } from "react-router-dom";
 import CustomerService from '../services/CustomerService';
+import HeaderComponent from './HeaderComponent';
 
 class RegisterCustomerComponent extends Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class RegisterCustomerComponent extends Component {
         try {
             let user = await CustomerService.registerCustomer(customer);
             this.setState({ user });
+            this.props.updateLogin();
         } catch (error) {
             this.setState({ error });
         }

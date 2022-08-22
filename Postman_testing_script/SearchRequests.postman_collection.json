@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "a76ad7c7-9d14-42e0-97c0-470f9d5e6602",
+		"name": "SearchRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17379605"
+	},
+	"item": [
+		{
+			"name": "SearchProductWithDistance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"keywords\": \"Watch\",\r\n    \"distance\": 5,\r\n    \"latitude\": \"34.0521\",\r\n    \"longitude\": \"-118.24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchProductWithoutDistance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"keywords\": \"Watch\",\r\n    \"distance\": 5,\r\n    \"latitude\": \"0\",\r\n    \"longitude\": \"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/search/no-geo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"no-geo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

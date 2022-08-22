@@ -36,4 +36,31 @@ public class Product {
     private Long sellerId;
     @Column(name = "comments_count")
     private int commentsCount;
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Product)) {
+            return false;
+        }
+        Product p = (Product) other;
+        return (this.id == p.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + id.hashCode();
+        result = 31 * result + productName.hashCode();
+        result = 31 * result + 37 * (int) price;
+        result = 31 * result + 37 * quantity;
+        result = 31 * result + shortDescription.hashCode();
+        result = 31 * result + fullDescription.hashCode();
+        result = 31 * result + image.hashCode();
+        result = 31 * result + category.hashCode();
+        result = 31 * result + sellerId.hashCode();
+        return result;
+    }
 }

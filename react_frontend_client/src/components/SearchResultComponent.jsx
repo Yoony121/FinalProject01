@@ -4,60 +4,60 @@ import SimpleImageSlider from "react-simple-image-slider";
 import ProductService from '../services/ProductService';
 import CartService from '../services/CartService';
 
-class HomeComponent extends Component {
+class SearchResultComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            mainPageProducts: [],
             recommendedProducts: [],
             trendingProducts: [],
-            sliderImages: [{url: "img/slider/slide-1.jpg"},
-                            {url: "img/slider/slide-2.jpg"},
-                            {url: "img/slider/slide-3.jpg"}],
-            currentProductId: {}
         }
-        // this.productIdHandler = this.productIdHandler.bind(this);
-        // this.addProductToCart = this.addProductToCart.bind(this);
-
+ 
 
     }
 
     componentDidMount() {
-        ProductService.getMainPageProducts().then(res => {
-            this.setState({mainPageProducts: res.data});
-        });
         ProductService.getRecommendedProducts().then(res => {
             this.setState({recommendedProducts: res.data});
         });
         ProductService.getTrendingProducts().then(res => {
             this.setState({trendingProducts: res.data});
         });
+        console.log("Search result page mount with " + this.props.searchResultProducts.length + " of products");
     }
-
-    // addProductToCart = async (e) => {
-    //     e.preventDefault();
-    //     CartService.addProductToCartForCustomer(this.state.currentProductId);
-    // }
-
-    // productIdHandler= (event) => {
-    //     this.setState({currentProductId: event.target.value});
-    // }
-
 
     render() {
         return (
             <div>
                 <main>
-                    <div>
-                        <SimpleImageSlider
-                            width={896}
-                            height={504}
-                            images={this.state.sliderImages}
-                            showBullets={true}
-                            showNavs={true}
-                        />
+
+                <div className="new-product-section">
+                        <div className="product-section-heading">
+                            <h2>Search Results </h2>
+                        </div>
+                        <div className="product-content">
+                                {
+                                    this.props.searchResultProducts.map(
+                                        product => 
+                                        <div className="product">
+                                            <Link to={"/product/"+product.id}>
+                                                <img src={product.image}/>
+                                            </Link>
+                                            <div className="product-detail">
+                                                <h3>{product.productName}</h3>
+                                                <h2>{product.category}</h2>
+                                                <button className="btn btn-secondary" onClick={() => CartService.addProductToCartForCustomer(product.id)}>Add to Cart</button>
+                                                <p>{"$"+product.price}</p>
+                                                {/* <button buttonRadius="30%" onClick={() => CartService.addProductToCartForCustomer(product.id)}>Add to Cart</button> */}
+                                                {/* <a href="#">Add to Cart</a> */}
+                                                
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                        </div>
                     </div>
+
 
                     <div className="new-product-section">
                         <div className="product-section-heading">
@@ -172,4 +172,4 @@ class HomeComponent extends Component {
     }
 }
 
-export default HomeComponent
+export default SearchResultComponent

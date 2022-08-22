@@ -50,13 +50,16 @@ public class SecurityConfiguration {
         http.authorizeRequests().antMatchers("/create").permitAll()
                 .antMatchers("/customer").permitAll()
                 .antMatchers("/seller").permitAll()
-                .antMatchers("/product").permitAll();
+                .antMatchers("/product").permitAll()
+                .antMatchers("/comments").permitAll();
         http.headers().frameOptions().sameOrigin();
         http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/product/**").permitAll()
                 .antMatchers("/api/cart/**").permitAll()
+                .antMatchers("/api/search/**").permitAll()
+                .antMatchers("/api/comments/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
